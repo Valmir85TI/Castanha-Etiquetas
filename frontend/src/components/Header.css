@@ -1,0 +1,148 @@
+/* ===========================================================================
+ * Header.css
+ * 
+ * Estilos do componente Header.
+ * Implementa glassmorphism, gradiente sutil e animação de entrada.
+ * =========================================================================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 15, 30, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  animation: slideDown var(--transition-slow) ease;
+}
+
+/* Linha gradiente decorativa no topo */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-primary) 20%,
+    var(--color-primary-light) 50%,
+    var(--color-primary) 80%,
+    transparent
+  );
+}
+
+.header__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+/* ---- Logotipo ---- */
+.header__brand {
+  flex-shrink: 0;
+}
+
+.header__logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.1);
+  transition: transform var(--transition-normal);
+}
+
+.header__logo:hover {
+  transform: scale(1.05);
+}
+
+/* ---- Grupo do Título ---- */
+.header__title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.header__icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-glow);
+}
+
+.header__icon {
+  font-size: 1.25rem;
+  color: white;
+}
+
+.header__title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.header__subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---- Indicador de Status ---- */
+.header__status {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 999px;
+}
+
+.header__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-success);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.header__status-text {
+  font-size: var(--font-size-xs);
+  color: var(--color-success);
+  font-weight: 500;
+}
+
+/* ---- Responsividade ---- */
+@media (max-width: 768px) {
+  .header__container {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .header__logo {
+    height: 35px;
+  }
+
+  .header__title {
+    font-size: var(--font-size-base);
+  }
+
+  .header__subtitle {
+    display: none;
+  }
+
+  .header__status-text {
+    display: none;
+  }
+}

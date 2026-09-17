@@ -1,0 +1,205 @@
+/* ===========================================================================
+ * SearchBar.css
+ * 
+ * Estilos do componente de busca. Inclui efeitos glassmorphism nos inputs,
+ * gradiente nos botões e micro-animações de foco e hover.
+ * =========================================================================== */
+
+.search-bar {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color var(--transition-normal);
+}
+
+.search-bar:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ---- Cabeçalho da seção de busca ---- */
+.search-bar__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.search-bar__header-icon {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+}
+
+.search-bar__header-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ---- Grid de campos ---- */
+.search-bar__fields {
+  display: grid;
+  grid-template-columns: 2fr 0.7fr 1.2fr auto;
+  gap: var(--spacing-lg);
+  align-items: end;
+}
+
+.search-bar__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* ---- Labels ---- */
+.search-bar__label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-label);
+  letter-spacing: 0.01em;
+}
+
+.search-bar__label-icon {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ---- Inputs ---- */
+.search-bar__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar__input,
+.search-bar__select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-normal);
+  outline: none;
+}
+
+.search-bar__input::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.search-bar__input:focus,
+.search-bar__select:focus {
+  background: var(--color-bg-input-focus);
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.search-bar__input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.search-bar__input--small {
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--font-size-xl);
+  letter-spacing: 0.05em;
+}
+
+/* ---- Select ---- */
+.search-bar__select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.search-bar__select option {
+  background: #1a1f2e;
+  color: var(--color-text-primary);
+}
+
+/* ---- Spinner de carregamento ---- */
+.search-bar__spinner {
+  position: absolute;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Botão de Busca ---- */
+.search-bar__btn-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: 0.75rem 1.75rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  box-shadow: var(--shadow-glow);
+}
+
+.search-bar__btn-search:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(220, 38, 38, 0.4);
+}
+
+.search-bar__btn-search:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.search-bar__btn-search:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---- Responsividade ---- */
+@media (max-width: 1024px) {
+  .search-bar__fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .search-bar__field--codigo {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .search-bar {
+    padding: var(--spacing-lg);
+  }
+  .search-bar__fields {
+    grid-template-columns: 1fr;
+  }
+  .search-bar__field--codigo {
+    grid-column: span 1;
+  }
+}

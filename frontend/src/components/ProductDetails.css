@@ -1,0 +1,166 @@
+/* ===========================================================================
+ * ProductDetails.css
+ * 
+ * Estilos do componente de detalhes do produto.
+ * Inclui grade responsiva, estado vazio e destaque do campo de descrição.
+ * =========================================================================== */
+
+.product-details {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color var(--transition-normal);
+}
+
+.product-details:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ---- Cabeçalho da seção ---- */
+.product-details__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.product-details__header-icon {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+}
+
+.product-details__header-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ---- Estado Vazio ---- */
+.product-details__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  text-align: center;
+}
+
+.product-details__empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.product-details__empty-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+/* ---- Grade de campos ---- */
+.product-details__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  animation: scaleIn var(--transition-slow) ease;
+}
+
+/* ---- Campo individual ---- */
+.product-details__field {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  transition: all var(--transition-normal);
+}
+
+.product-details__field:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--color-border-hover);
+  transform: translateY(-1px);
+}
+
+/* Campo de descrição ocupa toda a largura */
+.product-details__field--destaque {
+  grid-column: span 3;
+  border-color: rgba(220, 38, 38, 0.15);
+  background: rgba(220, 38, 38, 0.03);
+}
+
+.product-details__field--destaque:hover {
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+/* ---- Label do campo ---- */
+.product-details__field-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.product-details__field-icon {
+  font-size: var(--font-size-sm);
+}
+
+/* ---- Valor do campo ---- */
+.product-details__field-value {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+.product-details__field-value--preco {
+  color: var(--color-success);
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+}
+
+.product-details__currency {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin-right: var(--spacing-xs);
+  opacity: 0.7;
+}
+
+/* ---- Responsividade ---- */
+@media (max-width: 1024px) {
+  .product-details__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .product-details__field--destaque {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-details {
+    padding: var(--spacing-lg);
+  }
+  .product-details__grid {
+    grid-template-columns: 1fr;
+  }
+  .product-details__field--destaque {
+    grid-column: span 1;
+  }
+}

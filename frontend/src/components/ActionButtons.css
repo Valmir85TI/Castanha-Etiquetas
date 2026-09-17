@@ -1,0 +1,131 @@
+/* ===========================================================================
+ * ActionButtons.css
+ * 
+ * Estilos dos botões de ação (Imprimir e Limpar).
+ * Botão primário com gradiente vermelho e glow.
+ * Botão secundário com estilo outlined (borda apenas).
+ * =========================================================================== */
+
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  padding: var(--spacing-lg) 0;
+}
+
+/* ---- Botão Base ---- */
+.action-buttons__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: 0.875rem 2.5rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-buttons__btn-icon {
+  font-size: var(--font-size-lg);
+}
+
+/* ---- Botão Primário (Imprimir) ---- */
+.action-buttons__btn--primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  color: white;
+  box-shadow: var(--shadow-glow);
+  min-width: 220px;
+}
+
+/* Shimmer (brilho animado no hover) */
+.action-buttons__btn--primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: left var(--transition-slow);
+}
+
+.action-buttons__btn--primary:hover:not(:disabled)::after {
+  left: 100%;
+}
+
+.action-buttons__btn--primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(220, 38, 38, 0.45);
+}
+
+.action-buttons__btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-glow);
+}
+
+.action-buttons__btn--primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---- Botão Secundário (Limpar) ---- */
+.action-buttons__btn--secondary {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  min-width: 180px;
+}
+
+.action-buttons__btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+  transform: translateY(-1px);
+}
+
+.action-buttons__btn--secondary:active {
+  transform: translateY(0);
+}
+
+/* ---- Botao Gerencia ---- */
+.action-buttons__btn--manager {
+  background: rgba(34, 197, 94, 0.08);
+  color: var(--color-success);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  min-width: 180px;
+}
+
+.action-buttons__btn--manager:hover {
+  background: rgba(34, 197, 94, 0.14);
+  border-color: rgba(34, 197, 94, 0.5);
+  color: #86efac;
+  transform: translateY(-1px);
+}
+
+.action-buttons__btn--manager:active {
+  transform: translateY(0);
+}
+
+/* ---- Responsividade ---- */
+@media (max-width: 640px) {
+  .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .action-buttons__btn {
+    min-width: unset;
+  }
+}

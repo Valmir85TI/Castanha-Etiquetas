@@ -1,0 +1,63 @@
+/* ===========================================================================
+ * App.css
+ * 
+ * Estilos do layout principal da aplicação.
+ * Define a estrutura de grid, espaçamento e rodapé.
+ * =========================================================================== */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Área principal ---- */
+.app__main {
+  flex: 1;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.app__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* ---- Grid de conteúdo: Detalhes + Preview ---- */
+.app__content-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+/* ---- Rodapé ---- */
+.app__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  text-align: center;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background: rgba(10, 15, 30, 0.5);
+}
+
+/* ---- Responsividade ---- */
+@media (max-width: 1024px) {
+  .app__content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .app__main {
+    padding: var(--spacing-md);
+  }
+  .app__container {
+    gap: var(--spacing-lg);
+  }
+}

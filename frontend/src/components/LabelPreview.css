@@ -1,0 +1,332 @@
+/* ===========================================================================
+ * LabelPreview.css
+ * 
+ * Estilos do componente de pré-visualização de etiquetas.
+ * Simula visualmente os diferentes layouts ZPL (Inteira, Meia, Carreiras).
+ * =========================================================================== */
+
+.label-preview {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color var(--transition-normal);
+}
+
+.label-preview:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ---- Cabeçalho ---- */
+.label-preview__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.label-preview__header-icon {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+}
+
+.label-preview__header-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.label-preview__badge {
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 999px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-primary-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Canvas da pré-visualização ---- */
+.label-preview__canvas {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 220px;
+}
+
+/* ---- Etiqueta Base ---- */
+.label-preview__label {
+  background: #fafafa;
+  color: #111;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  font-family: 'Courier New', monospace;
+  transition: transform var(--transition-normal);
+}
+
+.label-preview__label:hover {
+  transform: scale(1.02);
+}
+
+/* ---- Tipo: Inteira ---- */
+.label-preview__label--inteira {
+  width: 420px;
+  padding: 16px 20px;
+}
+
+.label-preview__label-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.label-preview__label-brand {
+  font-size: 14px;
+  font-weight: 900;
+  color: #b91c1c;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.label-preview__label-desc {
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+.label-preview__label-barcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label-preview__barcode-lines {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 40px;
+}
+
+.label-preview__barcode-line {
+  height: 100%;
+  background: #111;
+  border-radius: 0;
+}
+
+.label-preview__barcode-line--small {
+  height: 28px;
+  width: 2px;
+  background: #111;
+}
+
+.label-preview__barcode-number {
+  font-size: 10px;
+  color: #333;
+  margin-top: 3px;
+  letter-spacing: 2px;
+}
+
+.label-preview__label-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.label-preview__label-date {
+  font-size: 10px;
+  color: #666;
+}
+
+.label-preview__label-price-group {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.label-preview__label-price-symbol {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+.label-preview__label-price {
+  font-size: 28px;
+  font-weight: 900;
+  color: #111;
+  line-height: 1;
+}
+
+.label-preview__label-unit {
+  text-align: center;
+  font-size: 9px;
+  color: #666;
+  margin-top: 6px;
+  border-top: 1px solid #ddd;
+  padding-top: 4px;
+}
+
+/* ---- Tipo: Meia (duas etiquetas lado a lado) ---- */
+.label-preview__label--meia {
+  display: flex;
+  width: 420px;
+  padding: 0;
+  gap: 0;
+}
+
+.label-preview__half {
+  flex: 1;
+  padding: 12px;
+  border-right: 1px dashed #ccc;
+  text-align: center;
+}
+
+.label-preview__half:last-child {
+  border-right: none;
+}
+
+.label-preview__half-desc {
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.label-preview__half-barcode {
+  display: flex;
+  justify-content: center;
+  gap: 1px;
+  margin-bottom: 8px;
+}
+
+.label-preview__half-price {
+  font-size: 10px;
+  color: #333;
+}
+
+.label-preview__half-price strong {
+  font-size: 22px;
+  font-weight: 900;
+  display: block;
+}
+
+/* ---- Tipo: Carreiras (3 etiquetas em linha) ---- */
+.label-preview__label--carreiras {
+  display: flex;
+  width: 420px;
+  padding: 0;
+  gap: 0;
+}
+
+.label-preview__carreira {
+  flex: 1;
+  padding: 10px 8px;
+  border-right: 1px dashed #ccc;
+  text-align: center;
+}
+
+.label-preview__carreira:last-child {
+  border-right: none;
+}
+
+.label-preview__carreira-desc {
+  font-size: 9px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.label-preview__carreira-price {
+  font-size: 9px;
+  margin-bottom: 4px;
+}
+
+.label-preview__carreira-price strong {
+  font-size: 16px;
+  font-weight: 900;
+  display: block;
+}
+
+.label-preview__carreira-cod {
+  font-size: 8px;
+  color: #999;
+}
+
+/* ---- Tipo: Editavel ---- */
+.label-preview__label--editavel {
+  width: 420px;
+  padding: 30px 20px;
+  text-align: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #fafafa,
+    #fafafa 10px,
+    #f3f3f3 10px,
+    #f3f3f3 20px
+  );
+}
+
+.label-preview__editavel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.label-preview__editavel-icon {
+  font-size: 28px;
+  color: #999;
+}
+
+.label-preview__editavel-content p {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+}
+
+.label-preview__editavel-content span {
+  font-size: 10px;
+  color: #888;
+}
+
+/* ---- Info da impressora ---- */
+.label-preview__info {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.label-preview__info strong {
+  color: var(--color-text-secondary);
+}
+
+/* ---- Responsividade ---- */
+@media (max-width: 640px) {
+  .label-preview {
+    padding: var(--spacing-lg);
+  }
+
+  .label-preview__label--inteira,
+  .label-preview__label--meia,
+  .label-preview__label--carreiras,
+  .label-preview__label--editavel {
+    width: 100%;
+    max-width: 320px;
+  }
+}

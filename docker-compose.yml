@@ -1,0 +1,71 @@
+# =============================================================================
+# docker-compose.yml — Sistema de Impressão de Etiquetas Castanha
+# =============================================================================
+# Orquestra o build e a execução da aplicação (Backend FastAPI + Frontend React).
+#
+# Uso:
+#   - Primeira execução ou após alterações no código:
+#       docker compose up --build -d
+#
+#   - Apenas reiniciar (sem rebuild):
+#       docker compose restart
+#
+#   - Parar e remover o container:
+#       docker compose down
+#
+#   - Ver logs em tempo real:
+#       docker compose logs -f
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # Serviço principal: Backend Python (FastAPI) + Frontend React (estático)
+  # ---------------------------------------------------------------------------
+  app:
+    # Nome da imagem gerada localmente
+    image: castanha-etiquetas:latest
+
+    # Nome fixo do container para facilitar referências (docker stop, logs, etc.)
+    container_name: castanha-etiquetas
+
+    # Constrói a imagem a partir do Dockerfile na raiz do projeto
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # Mapeia a porta do host para a porta interna do container
+    # Formato: "PORTA_HOST:PORTA_CONTAINER"
+    # A aplicação escuta internamente na 8090 (definido no CMD do Dockerfile)
+    # e fica acessível externamente na 8090
+    ports:
+      - "8090:8090"
+
+    # Política de reinicialização automática:
+    # "unless-stopped" → reinicia automaticamente após falhas ou reboot do servidor,
+    # mas NÃO reinicia se o container foi parado manualmente.
+    restart: unless-stopped
+
+    # Carrega as credenciais (BLUESOFT_TOKEN, GERENCIA_USUARIO, GERENCIA_SENHA,
+    # SECRET_KEY) do arquivo backend/.env, que NÃO é versionado no Git.
+    # Copie backend/.env.example para backend/.env e preencha os valores reais.
+    env_file:
+      - backend/.env
+
+    # Variáveis de ambiente adicionais (não sensíveis).
+    environment:
+      - TZ=America/Sao_Paulo  # Fuso horário do container
+
+    # Configuração de health check: verifica se a API está respondendo a cada 30s
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8090/docs')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+    # Configuração de logs: limita o tamanho dos arquivos de log do Docker
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"   # Tamanho máximo por arquivo de log
+        max-file: "3"     # Número máximo de arquivos de log rotacionados

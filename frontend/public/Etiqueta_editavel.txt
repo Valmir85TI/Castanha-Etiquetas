@@ -1,0 +1,49 @@
+f"^XA 
+ 
+^LL250^FS 
+ 
+                                   * ------ Primeira Etiqueta... 
+ 
+^FO20,30^A0N,20,12^FD^FS 
+ 
+^FO20,45^A0N,30,20^FD^FS 
+ 
+^FO35,35^A0N,100,25^FDSOPA DE LEGUMES^FS
+
+^FO20,105^A0N,20,12^FD^FS
+
+^FO20,130^A0N,40,25^FD^FS 
+
+^FO68,150^A0N,40,25^FD^FS 
+ 
+                                   * ------ Segunda Etiqueta... 
+ 
+^FO295,30^A0N,20,12^^FS 
+ 
+^FO295,45^A0N,30,20^FD^FS 
+ 
+^FO300,35^A0N,100,25^FDSOPA DE LEGUMES^FS 
+
+^FO295,105^A0N,20,12^FD^FS 
+
+^FO295,120^A0N,40,25^FD^FS 
+
+^FO335,150^A0N,25,16^FD^FS
+
+                                   * ------ Terceira Etiqueta... 
+ 
+^FO565,30^A0N,20,12^FD^FS 
+ 
+^FO585,45^A0N,30,20^FD^FS 
+ 
+^FO560,35^A0N,100,25^FDSOPA DE LEGUMES^FS 
+ 
+^FO565,105^A0N,20,12^FD^FS
+
+^FO565,120^A0N,40,25^FD^FS 
+
+^FO605,150^A0N,25,16^FD^FS
+ 
+^PQ1,0,1,N^FS
+
+^XZ"
